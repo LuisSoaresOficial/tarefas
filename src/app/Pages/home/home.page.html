@@ -5,7 +5,43 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content [fullscreen]="true">
+<!-- Inicio do código para listar os objetos de nossa banco localStorage -->
 
-</ion-content>
+<ion-list>
+
+    <ion-list *ngIf="tarefaCollection.length < 1">
+      <ion-item>
+        <ion-label>Não há tarefas</ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-item-sliding *ngFor="let item of tarefaCollection">
+
+      <ion-item (click)="openActions(item)">
+
+        <ion-label [ngClass]="{'to-do-task': item.status === 'A Realizar', 'completed-task': item.status === 'Feito'}">
+          <h3>{{ item.nome.Tarefa }}</h3>
+          <p>{{ item.status }}</p>
+        </ion-label>
+        <ion-icon slot="start" name="information-circle" color="danger" *ngIf="item.status === 'Feito'">  </ion-icon>
+        <ion-icon slot="start" name="checkmark-circle" color="success" *ngIf="item.status === 'Pendente'">  </ion-icon>
+        <ion-icon slot="start" name="list-circle-outline" color="primary" *ngIf="item.status === 'A Realizar'">  </ion-icon>
+      </ion-item>
+
+  <ion-item-options side="start">
+    <ion-item-option color="danger"(click)="delete(item)">Excluir</ion-item-option>
+  </ion-item-options>
+</ion-item-sliding>
+</ion-list>
+<!-- Término do código para lista os objetos. -->
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="showAdd()" color="primary">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  </ion-content>
+
+
+

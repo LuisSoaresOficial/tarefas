@@ -25,3 +25,11 @@
 #container a {
   text-decoration: none;
 }
+
+.to-do-task{
+  color: blue;
+}
+.completed-task {
+  text-decoration: line-through; /* Traço para tarefas concluídas */
+  color: #f41010; /* Cor cinza para o texto concluído, se desejado */
+}
